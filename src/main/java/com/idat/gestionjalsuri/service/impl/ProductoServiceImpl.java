@@ -1,4 +1,4 @@
-package com.idat.gestionjalsuri.service;
+package com.idat.gestionjalsuri.service.impl;
 
 import com.idat.gestionjalsuri.model.request.ProductoRequest;
 import com.idat.gestionjalsuri.exception.ExceptionService;
@@ -11,6 +11,7 @@ import com.idat.gestionjalsuri.repository.CategoriaRepository;
 import com.idat.gestionjalsuri.repository.ProductoRepository;
 import com.idat.gestionjalsuri.repository.ProveedorRepository;
 import com.idat.gestionjalsuri.repository.UnidadMedidaRepository;
+import com.idat.gestionjalsuri.service.IProductoService;
 import com.idat.gestionjalsuri.util.Constante;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

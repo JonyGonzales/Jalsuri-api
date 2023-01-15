@@ -1,4 +1,4 @@
-package com.idat.gestionjalsuri.service;
+package com.idat.gestionjalsuri.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.idat.gestionjalsuri.model.entity.TipoDocumento;
 import com.idat.gestionjalsuri.repository.TipoDocumentoRepository;
+import com.idat.gestionjalsuri.service.ITipoDocumentoService;
 
 @Service
 public class TipoDocumentoImpl implements ITipoDocumentoService{

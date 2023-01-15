@@ -1,9 +1,11 @@
-package com.idat.gestionjalsuri.service;
+package com.idat.gestionjalsuri.service.impl;
 
 import com.idat.gestionjalsuri.model.entity.TipoMovimiento;
 import com.idat.gestionjalsuri.model.entity.UnidadMedida;
 import com.idat.gestionjalsuri.repository.TipoMovimientoRepository;
 import com.idat.gestionjalsuri.repository.UnidadMedidaRepository;
+import com.idat.gestionjalsuri.service.ITipoMovimientoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

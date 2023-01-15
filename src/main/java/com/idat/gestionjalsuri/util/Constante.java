@@ -16,7 +16,9 @@ public final class Constante {
 	public static final String URLSUBFIJOPROVEEDOR="proveedores";
 
 	public static final String URLSUBFIJOPRODUCTO="productos";
-	
+
+	public static final String URLSUBFIJOINSUMO="insumos";
+
 	public static final String URLSUBFIJOTIPOMOVIMIENTO="tipomovimiento";
 
 	public static final String URLSUBFIJOUSUARIOS="usuarios";

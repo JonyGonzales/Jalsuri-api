@@ -1,4 +1,4 @@
-package com.idat.gestionjalsuri.service;
+package com.idat.gestionjalsuri.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.idat.gestionjalsuri.model.entity.Empleado;
 import com.idat.gestionjalsuri.repository.EmpleadoRepository;
+import com.idat.gestionjalsuri.service.IEmpleadoService;
 
 @Service
 public class EmpleadoServiceImpl implements IEmpleadoService {
