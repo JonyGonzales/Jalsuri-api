@@ -1,16 +1,17 @@
-package com.idat.gestionjalsuri.model.request;
+package com.idat.gestionjalsuri.model;
 
-public class GenericoRequest{
+public class Generico {
 
 	private String estado;
-	
+
 	public String getEstado() {
 		return estado;
 	}
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
+	} 
+	
 	
 	
 }

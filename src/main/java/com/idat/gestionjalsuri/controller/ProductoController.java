@@ -3,12 +3,11 @@ package com.idat.gestionjalsuri.controller;
 import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.Producto;
 import com.idat.gestionjalsuri.model.request.ProductoRequest;
+import com.idat.gestionjalsuri.model.request.ProductoStockRequest;
 import com.idat.gestionjalsuri.model.response.DataResponse;
+import com.idat.gestionjalsuri.model.response.GenericResponse;
 import com.idat.gestionjalsuri.service.IProductoService;
 import com.idat.gestionjalsuri.util.Constante;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +23,9 @@ public class ProductoController {
 	private IProductoService productoService;
 
 	@GetMapping
-	// public ResponseEntity<DataResponse> listar() {
-	// 	return ResponseEntity.ok(this.productoService.listar());
-
-	// }
-	public ResponseEntity<List<Producto>> listar(){
+	public ResponseEntity<DataResponse> listar() {
 		return ResponseEntity.ok(this.productoService.listar());
+
 	}
 
 	@PostMapping
@@ -49,6 +45,10 @@ public class ProductoController {
 		this.productoService.eliminar(id);
 
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	@PostMapping("/actualizar-stock")
+	public ResponseEntity<GenericResponse> actualizarStok(@RequestBody @Validated ProductoStockRequest request){
+		return ResponseEntity.ok(this.productoService.actualizarStok(request));
 	}
 
 }

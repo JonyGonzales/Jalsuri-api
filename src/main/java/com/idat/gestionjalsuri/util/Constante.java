@@ -4,8 +4,9 @@ package com.idat.gestionjalsuri.util;
 public final class Constante {
 
 
-	private Constante() {
+    private Constante() {
 	}
+
 
 
 
@@ -13,19 +14,21 @@ public final class Constante {
 
 	public static final String URLSUBFIJOCATEGORIA="categorias";
 	
-	public static final String URLSUBFIJOPROVEEDOR="proveedores";
+	public static final String URLSUBFIJO_PROVEEDOR="proveedores";
 
 	public static final String URLSUBFIJOPRODUCTO="productos";
-
-	public static final String URLSUBFIJOINSUMO="insumos";
-
-	public static final String URLSUBFIJOTIPOMOVIMIENTO="tipomovimiento";
 
 	public static final String URLSUBFIJOUSUARIOS="usuarios";
 
 	public static final String URLSUBFIJOUNIDADMEDIDA="unidadmedida";
 
 	public static final String URLSUBFIJOTIPODOCUMENTO="tipodocumento";
+	
+	public static final String URLSUBFIJOTIPOMOVIMIENTO="tipomovimiento";
+	
+	public static final String URLSUBFIJO_MOV_ALMACEN="movimientoalmacen";
+	
+	public static final String URLSUBFIJO_DET_MOV ="detalle" ;
 
 	public static final String URLSUBFIJOEMPLEADO="empleado";
 
@@ -37,4 +40,5 @@ public final class Constante {
 	public static final String MENSAGE_DOCUMENTO_EXISTE = "El número dedocumento ya existe";
 
 	public static final String MENSAGE_EMAIL_EXISTE ="El email ya existe" ;
+	
 }

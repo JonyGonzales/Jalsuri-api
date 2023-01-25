@@ -1,8 +1,29 @@
 package com.idat.gestionjalsuri.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.idat.gestionjalsuri.model.entity.Usuario;
-import com.idat.gestionjalsuri.service.generic.ICRUD;
+import com.idat.gestionjalsuri.model.request.UsuarioRequest;
 
-public interface IUsuarioService extends ICRUD<Usuario> {
+public interface IUsuarioService{
+	
+	public Usuario registrar(UsuarioRequest t) ;
 
+	
+	public Usuario modificar(Long id,UsuarioRequest t) ;
+
+	
+	public boolean eliminar(Long id) ;
+
+	
+	public Usuario busca(Long id) ;
+
+	
+	public List<Usuario> listar() ;
+
+	
+	public Page<Usuario> listarPagina(Pageable page);
 }

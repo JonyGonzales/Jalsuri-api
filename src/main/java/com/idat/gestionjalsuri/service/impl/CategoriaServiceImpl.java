@@ -69,13 +69,13 @@ public class CategoriaServiceImpl implements ICategoriaService {
     public List<Categoria> listar() {
         List<Categoria> categorias = this.categoriaRepository.findAll()
                 .stream()
-                .filter(c -> c.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
+                .filter(c -> c.getEstado().equalsIgnoreCase("A"))
+                .sorted(Comparator.comparing(Categoria::getId).reversed())
                 .collect(Collectors.toList());
         if (categorias.isEmpty()) {
             throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.LISTA_VACIA, HttpStatus.NOT_FOUND);
         }
-        categorias.sort(Comparator.comparing(Categoria::getId)
-                .reversed());
+
         return categorias;
     }
 

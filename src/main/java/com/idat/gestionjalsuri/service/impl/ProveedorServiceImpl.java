@@ -49,6 +49,7 @@ public class ProveedorServiceImpl implements IProveedorService {
 			if (this.existeNombre(t.getNombre())||this.existeEmail(t.getEmail())||this.existeDocumento(t.getDocumento())){
 				throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,Constante.MENSAGE_NOMBRE_EXISTE,HttpStatus.BAD_REQUEST);
 			}
+			proveedor.setId(oProveedor.get().getId());
 			proveedor.setNombre(t.getNombre());
 			proveedor.setDocumento(t.getDocumento());
 			proveedor.setTelefono(t.getTelefono());
@@ -88,7 +89,7 @@ public class ProveedorServiceImpl implements IProveedorService {
 	public List<Proveedor> listar() {
 		List<Proveedor>proveedors= this.proveedorRepository.findAll()
 				.stream()
-				.filter(c->c.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
+				.filter(c->c.getEstado().equalsIgnoreCase("A"))
 				.collect(Collectors.toList());
 		if (proveedors.isEmpty()){
 			throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,Constante.LISTA_VACIA,HttpStatus.NOT_FOUND);
@@ -109,7 +110,7 @@ public class ProveedorServiceImpl implements IProveedorService {
 		proveedor.setDocumento(t.getDocumento());
 		proveedor.setTelefono(t.getTelefono());
 		proveedor.setEmail(t.getEmail());
-		proveedor.setEstado(Constante.ESTADO_ACTIVO);
+		proveedor.setEstado(Constante.ESTADO_ACTIVO)s;
 
 		return proveedor;
 	}

@@ -20,7 +20,7 @@ public class TipoDocumentoImpl implements ITipoDocumentoService{
 
 	@Override
 	public TipoDocumento registrar(TipoDocumento t) {
-		return null;
+		return this.tipoDocumentoRepository.save(t);
 	}
 
 	@Override

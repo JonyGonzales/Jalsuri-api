@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(Constante.URLPREFIJO + Constante.URLSUBFIJOPROVEEDOR)
+@RequestMapping(Constante.URLPREFIJO + Constante.URLSUBFIJO_PROVEEDOR)
 @CrossOrigin(origins = { "http://192.168.3.25:4200", "http://localhost:4200", "https://jalsuriweb.000webhostapp.com" })
 public class ProveedorController {
 

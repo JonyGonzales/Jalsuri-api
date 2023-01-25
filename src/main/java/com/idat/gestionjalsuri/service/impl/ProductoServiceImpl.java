@@ -1,12 +1,14 @@
 package com.idat.gestionjalsuri.service.impl;
 
-import com.idat.gestionjalsuri.model.request.ProductoRequest;
 import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.Categoria;
 import com.idat.gestionjalsuri.model.entity.Producto;
 import com.idat.gestionjalsuri.model.entity.Proveedor;
 import com.idat.gestionjalsuri.model.entity.UnidadMedida;
+import com.idat.gestionjalsuri.model.request.ProductoRequest;
+import com.idat.gestionjalsuri.model.request.ProductoStockRequest;
 import com.idat.gestionjalsuri.model.response.DataResponse;
+import com.idat.gestionjalsuri.model.response.GenericResponse;
 import com.idat.gestionjalsuri.repository.CategoriaRepository;
 import com.idat.gestionjalsuri.repository.ProductoRepository;
 import com.idat.gestionjalsuri.repository.ProveedorRepository;
@@ -19,7 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,51 +67,37 @@ public class ProductoServiceImpl implements IProductoService {
 
     }
 
+
     @Override
-    public Producto actualizar(ProductoRequest productoRequest) {
-        return null;
+    public GenericResponse actualizarStok(ProductoStockRequest request) {
+        Producto producto = this.buscarXid(request.getId());
+        producto.setStock(request.getStock() + producto.getStock());
+        producto.setFechaIngreso(LocalDate.now());
+        producto.setFechaVencimiento(LocalDate.now().plusMonths(2));
+        this.productoRepository.save(producto);
+        return GenericResponse.builder().cod("0").mensage("Stock actualizado").build();
     }
 
-    /* (non-Javadoc)
-     * @see com.idat.gestionjalsuri.service.IProductoService#listar()
-     */
-    /* (non-Javadoc)
-     * @see com.idat.gestionjalsuri.service.IProductoService#listar()
-     */
     @Override
-    // public DataResponse listar() {
-    //     DataResponse response = new DataResponse();
-
-    //     List<Producto> productos = this.productoRepository.findAll().stream().filter(p -> p.getEstado().equalsIgnoreCase("Activo")).collect(Collectors.toList());
-
-    //     if (productos.isEmpty()) {
-    //         throw new ExceptionService("-2", "Lista vacia", HttpStatus.NOT_FOUND);
-    //     }
-    //     response.setProductos(productos);
-    //     response.setTotalProducto(productos.stream().mapToInt(p -> p.getStock()).sum());
-    //     response.setPrecioTotalProducto(productos.stream().mapToDouble(p -> p.getPrecio() * p.getStock()).sum());
-    //     return response;
-    // }
-    public List<Producto> listar() {
-		List<Producto>product= this.productoRepository.findAll()
-				.stream()
-				.filter(c->c.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
-				.collect(Collectors.toList());
-		if (product.isEmpty()){
-			throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,Constante.LISTA_VACIA,HttpStatus.NOT_FOUND);
-		}
-		// product.sort(Comparator.comparing(Proveedor::getId)
-		// 		.reversed());
-		return product;
-	}
+    public DataResponse listar() {
+        DataResponse response = new DataResponse();
+        List<Producto> productos = this.productoRepository.findAll().stream().filter(p -> p.getEstado().equalsIgnoreCase("A")).collect(Collectors.toList());
+        if (productos.isEmpty()) {
+            throw new ExceptionService("-2", "Lista vacia", HttpStatus.NOT_FOUND);
+        }
+        response.setProductos(productos);
+        response.setTotalProducto(productos.stream().mapToInt(p -> p.getStock()).sum());
+        response.setPrecioTotalProducto(productos.stream().mapToDouble(p -> p.getPrecio() * p.getStock()).sum());
+        return response;
+    }
 
     @Override
     public Producto buscarXid(Long id) throws ExceptionService {
 
         Optional<Producto> producto = Optional.ofNullable(this.productoRepository.findById(id)
-                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Id de categoria no encontrado...", HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Id de producto no encontrado...", HttpStatus.NOT_FOUND)));
         log.info("Esdo producto: {}", producto.get().getEstado());
-        if (!producto.get().getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO)) {
+        if (!producto.get().getEstado().equalsIgnoreCase("A")) {
             throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Estado de producto incorrecto", HttpStatus.NOT_FOUND);
         }
         return producto.get();
@@ -118,12 +105,8 @@ public class ProductoServiceImpl implements IProductoService {
 
     @Override
     public void eliminar(Long id) throws ExceptionService {
-        Optional<Producto> producto = this.productoRepository.findById(id);
-        if (producto.isPresent()) {
-            this.productoRepository.deleteById(id);
-        } else {
-            throw new ExceptionService("-1", "No se Encontro el Id", HttpStatus.NO_CONTENT);
-        }
+        this.buscarXid(id);
+        this.productoRepository.deleteById(id);
 
 
     }

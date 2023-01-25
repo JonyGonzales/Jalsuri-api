@@ -18,6 +18,8 @@ public class Usuario extends Generico{
 	private String email;
 	private String password;
 	private String role;
+	private String area;
+	
 	public Long getId() {
 		return id;
 	}
@@ -48,7 +50,10 @@ public class Usuario extends Generico{
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
-	
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
 }
