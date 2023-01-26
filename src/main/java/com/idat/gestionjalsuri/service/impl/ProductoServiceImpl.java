@@ -79,16 +79,16 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public DataResponse listar() {
-        DataResponse response = new DataResponse();
+    public List<Producto> listar() {
+        // DataResponse response = new DataResponse();
         List<Producto> productos = this.productoRepository.findAll().stream().filter(p -> p.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO)).collect(Collectors.toList());
         if (productos.isEmpty()) {
             throw new ExceptionService("-2", "Lista vacia", HttpStatus.NOT_FOUND);
         }
-        response.setProductos(productos);
+        // response.setProductos(productos);
         // response.setTotalProducto(productos.stream().mapToInt(p -> p.getStock()).sum());
         // response.setPrecioTotalProducto(productos.stream().mapToDouble(p -> p.getPrecio() * p.getStock()).sum());
-        return response;
+        return productos;
     }
 
     @Override
