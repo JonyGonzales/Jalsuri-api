@@ -8,6 +8,9 @@ import com.idat.gestionjalsuri.model.response.DataResponse;
 import com.idat.gestionjalsuri.model.response.GenericResponse;
 import com.idat.gestionjalsuri.service.IProductoService;
 import com.idat.gestionjalsuri.util.Constante;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +26,7 @@ public class ProductoController {
 	private IProductoService productoService;
 
 	@GetMapping
-	public ResponseEntity<DataResponse> listar() {
+	public ResponseEntity<List<Producto>> listar() {
 		return ResponseEntity.ok(this.productoService.listar());
 
 	}
