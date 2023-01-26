@@ -50,7 +50,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        usuario.setPassword(t.getPassword());
 	        usuario.setRole(t.getRole());
 	        usuario.setArea(t.getArea());
-	        usuario.setEstado(Constante.ESTADO_ACTIVO);
+	        usuario.setEstado(Constante.ESTADO_ACTIBO);
 	        return this.usuarioRepository.save(usuario);
 	}
 
@@ -95,7 +95,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        usuario.setPassword(t.getPassword());
 	        usuario.setRole(t.getRole());
 	        usuario.setArea(t.getArea());
-	        usuario.setEstado(Constante.ESTADO_ACTIVO);
+	        usuario.setEstado("A");
 
 	        return usuario;
 	    }

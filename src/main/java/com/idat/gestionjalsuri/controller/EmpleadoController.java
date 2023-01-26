@@ -75,6 +75,7 @@ public class EmpleadoController {
 			empleado.setNombre(detalleEmpleado.getNombre());
 			empleado.setArea(detalleEmpleado.getArea());
 			empleado.setEstado("Activo");
+			
 			Empleado empleadoActualizado = empleadoService.modificar(empleado);
 			return ResponseEntity.ok(empleadoActualizado);
 

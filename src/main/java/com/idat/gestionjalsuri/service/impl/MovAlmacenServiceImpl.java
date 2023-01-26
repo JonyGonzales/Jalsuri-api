@@ -163,7 +163,7 @@ public class MovAlmacenServiceImpl implements IMovAlmacenService {
     public List<MovAlmacen> listar() {
         List<MovAlmacen> movAlmacens = this.movAlmacenRepository.findAll()
                 .stream()
-                .filter(m -> m.getEstado().equalsIgnoreCase("A"))
+                .filter(m -> m.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
                 .sorted(Comparator.comparing(MovAlmacen::getId).reversed())
                 .collect(Collectors.toList());
         if (movAlmacens.isEmpty()) {
