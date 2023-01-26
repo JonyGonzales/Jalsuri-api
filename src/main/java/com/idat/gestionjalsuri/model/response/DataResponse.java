@@ -10,6 +10,6 @@ import java.util.List;
 @Setter
 public class DataResponse {
     private List<Producto> productos;
-    private Integer totalProducto;
-    private Double precioTotalProducto;
+    // private Integer totalProducto;
+    // private Double precioTotalProducto;
 }

@@ -86,8 +86,8 @@ public class ProductoServiceImpl implements IProductoService {
             throw new ExceptionService("-2", "Lista vacia", HttpStatus.NOT_FOUND);
         }
         response.setProductos(productos);
-        response.setTotalProducto(productos.stream().mapToInt(p -> p.getStock()).sum());
-        response.setPrecioTotalProducto(productos.stream().mapToDouble(p -> p.getPrecio() * p.getStock()).sum());
+        // response.setTotalProducto(productos.stream().mapToInt(p -> p.getStock()).sum());
+        // response.setPrecioTotalProducto(productos.stream().mapToDouble(p -> p.getPrecio() * p.getStock()).sum());
         return response;
     }
 
