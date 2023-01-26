@@ -81,7 +81,7 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     public DataResponse listar() {
         DataResponse response = new DataResponse();
-        List<Producto> productos = this.productoRepository.findAll().stream().filter(p -> p.getEstado().equalsIgnoreCase("A")).collect(Collectors.toList());
+        List<Producto> productos = this.productoRepository.findAll().stream().filter(p -> p.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO)).collect(Collectors.toList());
         if (productos.isEmpty()) {
             throw new ExceptionService("-2", "Lista vacia", HttpStatus.NOT_FOUND);
         }
@@ -97,7 +97,7 @@ public class ProductoServiceImpl implements IProductoService {
         Optional<Producto> producto = Optional.ofNullable(this.productoRepository.findById(id)
                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Id de producto no encontrado...", HttpStatus.NOT_FOUND)));
         log.info("Esdo producto: {}", producto.get().getEstado());
-        if (!producto.get().getEstado().equalsIgnoreCase("A")) {
+        if (!producto.get().getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO)) {
             throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Estado de producto incorrecto", HttpStatus.NOT_FOUND);
         }
         return producto.get();

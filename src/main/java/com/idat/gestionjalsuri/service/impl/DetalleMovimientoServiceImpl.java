@@ -83,7 +83,7 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
     @Override
     public DetalleMovimiento busca(Long id) {
         return this.detalleMovimientoRepository.findById(id)
-                .filter(d->d.getEstado().equalsIgnoreCase("A"))
+                .filter(d->d.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
                         "Id de detalle movimiento  no encontrado...",
                         HttpStatus.NOT_FOUND));
@@ -94,7 +94,7 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
     public List<DetalleMovimiento> listar() {
         List<DetalleMovimiento> movAlmacens = this.detalleMovimientoRepository.findAll()
                 .stream()
-                .filter(m -> m.getEstado().equalsIgnoreCase("A"))
+                .filter(m -> m.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
                 .sorted(Comparator.comparing(DetalleMovimiento::getId).reversed())
                 .collect(Collectors.toList());
         if (movAlmacens.isEmpty()) {

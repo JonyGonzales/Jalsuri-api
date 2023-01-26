@@ -69,7 +69,7 @@ public class CategoriaServiceImpl implements ICategoriaService {
     public List<Categoria> listar() {
         List<Categoria> categorias = this.categoriaRepository.findAll()
                 .stream()
-                .filter(c -> c.getEstado().equalsIgnoreCase("A"))
+                .filter(c -> c.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
                 .sorted(Comparator.comparing(Categoria::getId).reversed())
                 .collect(Collectors.toList());
         if (categorias.isEmpty()) {

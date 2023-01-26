@@ -109,7 +109,7 @@ public class MovAlmacenServiceImpl implements IMovAlmacenService {
                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Tipo de movimiento no existe...", HttpStatus.NOT_FOUND)));
 
         MovAlmacen oMovAlmacen= this.busca(idMovimineto);
-        if (producto.get().getEstado().equalsIgnoreCase("A") && producto.get().getStock()>=request.getCantidadMovimiento()){
+        if (producto.get().getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO) && producto.get().getStock()>=request.getCantidadMovimiento()){
             oProducto.setStock(producto.get().getStock()-request.getCantidadMovimiento());
 
             oProducto.setId(producto.get().getId());
