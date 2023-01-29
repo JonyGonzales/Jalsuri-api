@@ -30,7 +30,7 @@ public class MovimientoAlmacenController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> agregar(@RequestBody @Validated MovAlmacenRequest request) {
+	public ResponseEntity<Void> agregar(@RequestBody MovAlmacenRequest request) {
 		log.info("MovAlmacenRequest: {}",request);
 		log.info("MovAlmacenRequest: {}",request.getObservaciones());
 		this.movAlmacenService.registrar(request);

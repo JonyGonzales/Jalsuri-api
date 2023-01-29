@@ -10,7 +10,7 @@ public class MovAlmacenRequest {
     
     private Long tipoMovimiento;
 
-    private String numeroMovimiento;
+    private String numeroDocumento;
     
     private String observaciones;
    
@@ -20,6 +20,5 @@ public class MovAlmacenRequest {
 
     private Long cliente;
 
-    
     private Long usuario;
 }

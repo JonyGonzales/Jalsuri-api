@@ -20,6 +20,8 @@ public class TipoMovimiento {
 	
 	private String nombre;
 
+	private String tipo;
+
 	@Override
 	public String toString() {
 		return "TipoDocumento{" +

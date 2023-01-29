@@ -55,13 +55,23 @@ public class MovAlmacenServiceImpl implements IMovAlmacenService {
                                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
                                                 "Id de tipo documento no encontrado...", HttpStatus.NOT_FOUND)));
 
-                Optional<Proveedor> proveedor = Optional.of(this.proveedorRepository.findById(t.getProveedor())
-                                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
-                                                "Id del Proveedor no encontrado...", HttpStatus.NOT_FOUND)));
+                Optional<Proveedor> proveedor = null;
+                Proveedor p = null;
+                if (t.getProveedor() != null) {
+                        proveedor = Optional.of(this.proveedorRepository.findById(t.getProveedor())
+                                        .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                                                        "Id del Proveedor no encontrado...", HttpStatus.NOT_FOUND)));
+                        p = proveedor.get();
+                }
 
-                Optional<Cliente> cliente = Optional.of(this.clienteRepository.findById(t.getCliente())
-                                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
-                                                "Id del Cliente no encontrado...", HttpStatus.NOT_FOUND)));
+                Optional<Cliente> cliente = null;
+                Cliente c = null;
+                if (t.getCliente() != null) {
+                        cliente = Optional.of(this.clienteRepository.findById(t.getCliente())
+                                        .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                                                        "Id del Cliente no encontrado...", HttpStatus.NOT_FOUND)));
+                        c = cliente.get();
+                }
 
                 Optional<TipoMovimiento> tipoMovimiento = Optional.of(this.movimientoRepository
                                 .findById(t.getTipoMovimiento())
@@ -74,9 +84,9 @@ public class MovAlmacenServiceImpl implements IMovAlmacenService {
                                 .fechaCreado(LocalDateTime.now())
                                 .observaciones(t.getObservaciones())
                                 .tipoDocumento(tipoDocumento.get())
-                                .numeroDocumento(t.getNumeroMovimiento())
-                                .proveedor(proveedor.get())
-                                .cliente(cliente.get())
+                                .numeroDocumento(t.getNumeroDocumento())
+                                .proveedor(p)
+                                .cliente(c)
                                 .usuario(usuario.get())
                                 .estado(Constante.ESTADO_ACTIVO)
                                 .build();
@@ -101,22 +111,32 @@ public class MovAlmacenServiceImpl implements IMovAlmacenService {
                                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
                                                 "Tipo de movimiento no existe...", HttpStatus.NOT_FOUND)));
 
-                Optional<Proveedor> proveedor = Optional.of(this.proveedorRepository.findById(t.getProveedor())
-                                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
-                                                "Id del Proveedor documento no encontrado...", HttpStatus.NOT_FOUND)));
+                Optional<Proveedor> proveedor = null;
+                Proveedor p = null;
+                if (t.getProveedor() != null) {
+                        proveedor = Optional.of(this.proveedorRepository.findById(t.getProveedor())
+                                        .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                                                        "Id del Proveedor no encontrado...", HttpStatus.NOT_FOUND)));
+                        p = proveedor.get();
+                }
 
-                Optional<Cliente> cliente = Optional.of(this.clienteRepository.findById(t.getCliente())
-                                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
-                                                "Id del Cliente no encontrado...", HttpStatus.NOT_FOUND)));
+                Optional<Cliente> cliente = null;
+                Cliente c = null;
+                if (t.getCliente() != null) {
+                        cliente = Optional.of(this.clienteRepository.findById(t.getCliente())
+                                        .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                                                        "Id del Cliente no encontrado...", HttpStatus.NOT_FOUND)));
+                        c = cliente.get();
+                }
 
                 MovAlmacen movAlmacen = MovAlmacen.builder()
                                 .tipoMovimiento(tipoMovimiento.get())
                                 .fechaMovimiento(LocalDate.now())
                                 .observaciones(t.getObservaciones())
                                 .tipoDocumento(tipoDocumento.get())
-                                .numeroDocumento(t.getNumeroMovimiento())
-                                .proveedor(proveedor.get())
-                                .cliente(cliente.get())
+                                .numeroDocumento(t.getNumeroDocumento())
+                                .proveedor(p)
+                                .cliente(c)
                                 .usuario(usuario.get())
                                 .estado(Constante.ESTADO_ACTIVO)
                                 .build();
