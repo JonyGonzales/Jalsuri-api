@@ -30,12 +30,11 @@ public class DetalleMovimientoController {
 
 	@PostMapping
 	public ResponseEntity<Void> agregar(@RequestBody @Validated DetalleMovimientoRequest request) {
-		log.info("MovAlmacenRequest: {}",request);
-		log.info("MovAlmacenRequest: {}",request.getObservacionMovimiento());
+		log.info("MovAlmacenRequest: {}", request);
+		log.info("MovAlmacenRequest: {}", request.getObservaciones());
 		this.detalleMovimintoService.registrar(request);
 		return ResponseEntity.ok().build();
 	}
-
 
 	@GetMapping("/{id}")
 	public ResponseEntity<DetalleMovimiento> buscar(@PathVariable("id") Long id) {
@@ -46,7 +45,7 @@ public class DetalleMovimientoController {
 	@PutMapping("/{id}")
 	public ResponseEntity<DetalleMovimiento> actualizarUsuarioxId(@PathVariable Long id,
 			@RequestBody @Validated DetalleMovimientoRequest request) {
-		detalleMovimintoService.modificar(id,request);
+		detalleMovimintoService.modificar(id, request);
 		return ResponseEntity.ok().build();
 
 	}

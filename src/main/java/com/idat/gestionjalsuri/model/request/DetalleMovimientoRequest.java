@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 public class DetalleMovimientoRequest {
 
-    private String observacionMovimiento;
+    private String observaciones;
     private Long idMovAlmacen;
     private Long idProducto;
-    private Integer cantidadProducto;
+    private Integer cantidad;
 }

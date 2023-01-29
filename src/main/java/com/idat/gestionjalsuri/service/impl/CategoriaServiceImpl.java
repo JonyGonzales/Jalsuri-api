@@ -3,6 +3,7 @@ package com.idat.gestionjalsuri.service.impl;
 import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.Categoria;
 import com.idat.gestionjalsuri.model.request.CategoriaRequest;
+import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.repository.CategoriaRepository;
 import com.idat.gestionjalsuri.service.ICategoriaService;
 import com.idat.gestionjalsuri.util.Constante;
@@ -94,6 +95,18 @@ public class CategoriaServiceImpl implements ICategoriaService {
 
     private boolean existeNombreCategoria(CategoriaRequest t) {
         return this.categoriaRepository.existsByNombre(t.getNombre());
+    }
+
+
+    @Override
+    public Categoria cambiaEstado(Long id, GenericoRequest t) {
+        Categoria categoria = new Categoria();
+        Optional<Categoria> oCategoria = Optional.ofNullable(this.categoriaRepository.findById(id)
+                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
+
+
+        categoria.setEstado(t.getEstado());
+        return this.categoriaRepository.save(categoria);
     }
 
 }

@@ -1,14 +1,11 @@
 package com.idat.gestionjalsuri.exception;
 
-import org.springframework.http.HttpStatus;
 
 public class ErrorResponse {
  
 	private String codigo;
 	private String mensaje;
 
-	
-	
 	
 	public ErrorResponse() {}
 
@@ -29,7 +26,6 @@ public class ErrorResponse {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-
 	
 	
 }

@@ -1,16 +1,12 @@
 package com.idat.gestionjalsuri.model.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class GenericoRequest{
 
 	private String estado;
-	
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	
 	
 }

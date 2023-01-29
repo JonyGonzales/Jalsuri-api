@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.idat.gestionjalsuri.model.entity.Categoria;
 import com.idat.gestionjalsuri.model.request.CategoriaRequest;
+import com.idat.gestionjalsuri.model.request.GenericoRequest;
 
 public interface ICategoriaService {
 	
@@ -27,5 +28,7 @@ public interface ICategoriaService {
 
 	
 	public Page<Categoria> listarPagina(Pageable page);
+
+	public Categoria cambiaEstado(Long id,GenericoRequest t) ;
 
 }

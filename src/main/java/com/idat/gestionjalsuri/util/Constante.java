@@ -15,6 +15,7 @@ public final class Constante {
 	public static final String URLSUBFIJOCATEGORIA="categorias";
 	
 	public static final String URLSUBFIJO_PROVEEDOR="proveedores";
+	public static final String URLSUBFIJO_CLIENTE="clientes";
 
 	public static final String URLSUBFIJOPRODUCTO="productos";
 

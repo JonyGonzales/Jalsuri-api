@@ -7,7 +7,6 @@ import com.idat.gestionjalsuri.model.entity.Proveedor;
 import com.idat.gestionjalsuri.model.entity.UnidadMedida;
 import com.idat.gestionjalsuri.model.request.ProductoRequest;
 import com.idat.gestionjalsuri.model.request.ProductoStockRequest;
-import com.idat.gestionjalsuri.model.response.DataResponse;
 import com.idat.gestionjalsuri.model.response.GenericResponse;
 import com.idat.gestionjalsuri.repository.CategoriaRepository;
 import com.idat.gestionjalsuri.repository.ProductoRepository;

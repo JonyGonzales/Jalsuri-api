@@ -9,10 +9,17 @@ public class MovAlmacenRequest {
 
     
     private Long tipoMovimiento;
+
+    private String numeroMovimiento;
     
-    private String obsevacionMovimiento;
+    private String observaciones;
    
     private Long tipoDocumento;
+
+    private Long proveedor;
+
+    private Long cliente;
+
     
     private Long usuario;
 }

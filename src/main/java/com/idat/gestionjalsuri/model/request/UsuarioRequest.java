@@ -31,4 +31,6 @@ public class UsuarioRequest extends GenericoRequest{
 	@NotNull
 	@NotBlank
 	private String area;
+
+	
 }

@@ -3,8 +3,6 @@ package com.idat.gestionjalsuri.controller;
 import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.MovAlmacen;
 import com.idat.gestionjalsuri.model.request.MovAlmacenRequest;
-import com.idat.gestionjalsuri.model.request.MoverProductoRequest;
-import com.idat.gestionjalsuri.model.response.GenericResponse;
 import com.idat.gestionjalsuri.service.IMovAlmacenService;
 import com.idat.gestionjalsuri.util.Constante;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +32,7 @@ public class MovimientoAlmacenController {
 	@PostMapping
 	public ResponseEntity<Void> agregar(@RequestBody @Validated MovAlmacenRequest request) {
 		log.info("MovAlmacenRequest: {}",request);
-		log.info("MovAlmacenRequest: {}",request.getObsevacionMovimiento());
+		log.info("MovAlmacenRequest: {}",request.getObservaciones());
 		this.movAlmacenService.registrar(request);
 		return ResponseEntity.ok().build();
 	}
@@ -61,14 +59,9 @@ public class MovimientoAlmacenController {
 		return ResponseEntity.ok(movAlmacenService.eliminar(id));
 	}
 
-	@PostMapping ("/mover/{id}")
-	public ResponseEntity<GenericResponse> moverProducto(@PathVariable("id")Long id, @RequestBody  @Validated MoverProductoRequest request){
-		return ResponseEntity.ok(this.movAlmacenService.moverProducto(id,request));
-	}
 	private void validarNumerico(String id){
 		if (!StringUtils.isNumeric(String.valueOf(id))){
 			throw new ExceptionService("-2","Error data request id",HttpStatus.BAD_REQUEST);
 		}
 	}
-
 }

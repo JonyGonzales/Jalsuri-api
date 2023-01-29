@@ -29,7 +29,8 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
 
     private MovAlmacenRepository movAlmacenRepository;
 
-    public DetalleMovimientoServiceImpl(DetalleMovimientoRepository detalleMovimientoRepository, ProductoRepository productoRepository, MovAlmacenRepository movAlmacenRepository) {
+    public DetalleMovimientoServiceImpl(DetalleMovimientoRepository detalleMovimientoRepository,
+            ProductoRepository productoRepository, MovAlmacenRepository movAlmacenRepository) {
         this.detalleMovimientoRepository = detalleMovimientoRepository;
         this.productoRepository = productoRepository;
         this.movAlmacenRepository = movAlmacenRepository;
@@ -38,13 +39,15 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
     @Override
     public void registrar(DetalleMovimientoRequest t) {
         Optional<Producto> producto = Optional.ofNullable(this.productoRepository.findById(t.getIdProducto())
-                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Id de producto no encontrado...", HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                        "Id de producto no encontrado...", HttpStatus.NOT_FOUND)));
         Optional<MovAlmacen> movAlmacen = Optional.ofNullable(this.movAlmacenRepository.findById(t.getIdMovAlmacen())
-                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Id de movimiento almacen no encontrado...", HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                        "Id de movimiento almacen no encontrado...", HttpStatus.NOT_FOUND)));
 
         DetalleMovimiento detalleMovimiento = DetalleMovimiento.builder()
-                .cantidadProducto(t.getCantidadProducto())
-                .observacionMovimiento(t.getObservacionMovimiento())
+                .cantidad(t.getCantidad())
+                .observaciones(t.getObservaciones())
                 .producto(producto.get())
                 .movAlmacen(movAlmacen.get())
                 .estado(Constante.ESTADO_ACTIVO)
@@ -57,17 +60,17 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
     public void modificar(Long id, DetalleMovimientoRequest t) {
         this.busca(id);
         Optional<Producto> producto = Optional.ofNullable(this.productoRepository.findById(t.getIdProducto())
-                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Id de producto no encontrado...", HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                        "Id de producto no encontrado...", HttpStatus.NOT_FOUND)));
         Optional<MovAlmacen> movAlmacen = Optional.ofNullable(this.movAlmacenRepository.findById(t.getIdMovAlmacen())
-                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, "Id de movimiento almacen no encontrado...", HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
+                        "Id de movimiento almacen no encontrado...", HttpStatus.NOT_FOUND)));
 
         DetalleMovimiento detalleMovimiento = DetalleMovimiento.builder()
-                .id(this.busca(id).getId())
-                .cantidadProducto(producto.get().getStock())
-                .observacionMovimiento(t.getObservacionMovimiento())
+                .cantidad(t.getCantidad())
+                .observaciones(t.getObservaciones())
                 .producto(producto.get())
                 .movAlmacen(movAlmacen.get())
-                .estado(Constante.ESTADO_ACTIVO)
                 .build();
         this.detalleMovimientoRepository.save(detalleMovimiento);
         return;
@@ -83,7 +86,7 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
     @Override
     public DetalleMovimiento busca(Long id) {
         return this.detalleMovimientoRepository.findById(id)
-                .filter(d->d.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
+                .filter(d -> d.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO,
                         "Id de detalle movimiento  no encontrado...",
                         HttpStatus.NOT_FOUND));
