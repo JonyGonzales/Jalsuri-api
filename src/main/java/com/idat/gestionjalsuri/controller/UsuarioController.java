@@ -72,8 +72,10 @@ public class UsuarioController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		usuario.setEstado(usuarioRequest.getEstado());
-		//Usuario usuarioActualizado = categoriaService.modificar(categoriaRequest);
-		return null;//ResponseEntity.ok(usuarioActualizado);
+
+		Usuario usuariomod = usuarioService.modificar(id,usuarioRequest);
+		
+		return ResponseEntity.ok(usuariomod);
 
 	}
 
