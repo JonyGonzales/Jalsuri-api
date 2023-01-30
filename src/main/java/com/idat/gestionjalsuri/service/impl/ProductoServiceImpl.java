@@ -5,6 +5,7 @@ import com.idat.gestionjalsuri.model.entity.Categoria;
 import com.idat.gestionjalsuri.model.entity.Producto;
 import com.idat.gestionjalsuri.model.entity.Proveedor;
 import com.idat.gestionjalsuri.model.entity.UnidadMedida;
+import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.ProductoRequest;
 import com.idat.gestionjalsuri.model.request.ProductoStockRequest;
 import com.idat.gestionjalsuri.model.response.GenericResponse;
@@ -108,6 +109,14 @@ public class ProductoServiceImpl implements IProductoService {
         this.productoRepository.deleteById(id);
 
 
+    }
+
+
+    @Override
+    public Producto cambiaEstado(Long id, GenericoRequest t) {
+        Producto producto = new Producto();
+        producto.setEstado(t.getEstado());
+        return this.productoRepository.save(producto);
     }
 
 }

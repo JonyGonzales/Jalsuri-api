@@ -2,6 +2,7 @@ package com.idat.gestionjalsuri.controller;
 
 import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.Producto;
+import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.ProductoRequest;
 import com.idat.gestionjalsuri.model.request.ProductoStockRequest;
 import com.idat.gestionjalsuri.model.response.GenericResponse;
@@ -51,6 +52,13 @@ public class ProductoController {
 	@PostMapping("/actualizar-stock")
 	public ResponseEntity<GenericResponse> actualizarStok(@RequestBody @Validated ProductoStockRequest request){
 		return ResponseEntity.ok(this.productoService.actualizarStok(request));
+	}
+
+	@PostMapping("/cambiaEstado/{id}")
+	public ResponseEntity<Producto> cambiaEstado(@PathVariable Long id, @RequestBody GenericoRequest t){
+
+		Producto productoNuevo = productoService.cambiaEstado(id, t);
+		return ResponseEntity.ok(productoNuevo);
 	}
 
 }
