@@ -115,8 +115,13 @@ public class ProductoServiceImpl implements IProductoService {
     @Override
     public Producto cambiaEstado(Long id, GenericoRequest t) {
         Producto producto = new Producto();
+
+        Optional<Producto> oProducto = Optional.ofNullable(this.productoRepository.findById(id)
+                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
+
+        producto.setId(oProducto.get().getId());
         producto.setEstado(t.getEstado());
         return this.productoRepository.save(producto);
-    }
+    }   
 
 }
