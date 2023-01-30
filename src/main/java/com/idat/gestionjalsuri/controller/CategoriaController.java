@@ -2,6 +2,7 @@ package com.idat.gestionjalsuri.controller;
 
 import com.idat.gestionjalsuri.model.entity.Categoria;
 import com.idat.gestionjalsuri.model.request.CategoriaRequest;
+import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.service.ICategoriaService;
 import com.idat.gestionjalsuri.util.Constante;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,13 +56,13 @@ public class CategoriaController {
 	}
 
 	@PutMapping("/cambiaEstado/{id}")
-	public ResponseEntity<Categoria> cambiaEstadoXId(@PathVariable Long id, @RequestBody  CategoriaRequest categoriaRequest) {
+	public ResponseEntity<Categoria> cambiaEstadoXId(@PathVariable Long id, @RequestBody  GenericoRequest t) {
 
 		Categoria categoria = categoriaService.busca(id);
 		if (categoria == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		categoria.setEstado(categoriaRequest.getEstado());
+		categoria.setEstado(t.getEstado());
 		//Categoria usuarioActualizado = categoriaService.modificar(categoriaRequest);
 		return null;//ResponseEntity.ok(usuarioActualizado);
 

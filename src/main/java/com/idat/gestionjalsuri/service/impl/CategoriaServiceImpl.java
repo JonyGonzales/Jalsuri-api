@@ -104,7 +104,7 @@ public class CategoriaServiceImpl implements ICategoriaService {
         Optional<Categoria> oCategoria = Optional.ofNullable(this.categoriaRepository.findById(id)
                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
 
-
+        categoria.setId(oCategoria.get().getId());
         categoria.setEstado(t.getEstado());
         return this.categoriaRepository.save(categoria);
     }
