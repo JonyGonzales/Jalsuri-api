@@ -8,7 +8,8 @@ public final class Constante {
 	}
 
 
-
+	public static final String CROSS_LOCAL="http://localhost:4200";
+	public static final String CROSS_WEB="https://jalsuri.web.app";
 
 	public static final String URLPREFIJO="/api/v1/";
 

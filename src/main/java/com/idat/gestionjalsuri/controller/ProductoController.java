@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(Constante.URLPREFIJO + Constante.URLSUBFIJOPRODUCTO)
-@CrossOrigin(origins = { "http://192.168.3.25:4200", "http://localhost:4200", "https://jalsuriweb.000webhostapp.com" })
+@CrossOrigin(origins = { Constante.CROSS_LOCAL,Constante.CROSS_WEB })
 public class ProductoController {
 
 	@Autowired
