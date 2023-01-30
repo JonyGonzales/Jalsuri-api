@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.Usuario;
+import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.UsuarioRequest;
 import com.idat.gestionjalsuri.repository.UsuarioRepository;
 import com.idat.gestionjalsuri.service.IUsuarioService;
@@ -106,6 +107,17 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	
 	private boolean existeEmail(String t){
 		return this.usuarioRepository.existsByEmail(t);
+	}
+
+	@Override
+	public Usuario estado(Long id, GenericoRequest t) {
+		Usuario usuario = new Usuario();
+	        Optional<Usuario> oUsuario = Optional.ofNullable(this.usuarioRepository.findById(id)
+	                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
+
+	        usuario.setId(oUsuario.get().getId());
+	        usuario.setEstado(t.getEstado());
+	        return this.usuarioRepository.save(usuario);
 	}
 
 }

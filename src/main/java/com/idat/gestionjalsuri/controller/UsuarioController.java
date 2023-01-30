@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.idat.gestionjalsuri.model.entity.Usuario;
+import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.UsuarioRequest;
 import com.idat.gestionjalsuri.service.IUsuarioService;
 import com.idat.gestionjalsuri.util.Constante;
@@ -65,7 +66,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/cambiaEstado/{id}")
-	public ResponseEntity<Usuario> cambiaEstadoXId(@PathVariable Long id, @RequestBody  UsuarioRequest usuarioRequest) {
+	public ResponseEntity<Usuario> cambiaEstadoXId(@PathVariable Long id, @RequestBody  GenericoRequest usuarioRequest) {
 
 		Usuario usuario = usuarioService.busca(id);
 		if (usuario == null) {
@@ -73,7 +74,7 @@ public class UsuarioController {
 		}
 		usuario.setEstado(usuarioRequest.getEstado());
 
-		Usuario usuariomod = usuarioService.modificar(id,usuarioRequest);
+		Usuario usuariomod = usuarioService.estado(id,usuarioRequest);
 		
 		return ResponseEntity.ok(usuariomod);
 
