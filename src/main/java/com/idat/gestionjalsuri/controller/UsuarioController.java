@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.idat.gestionjalsuri.controller.beam.PasswordRequest;
 import com.idat.gestionjalsuri.model.entity.Usuario;
 import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.UsuarioRequest;
@@ -84,6 +85,21 @@ public class UsuarioController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Boolean> eliminarUsuario(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(usuarioService.eliminar(id));
+	}
+	
+	@PutMapping("/cambioPassword/{id}")
+	public ResponseEntity<Usuario> cambiaPasswordXId(@PathVariable Long id,@RequestBody PasswordRequest passwordRequest) {
+		Usuario usuario = usuarioService.busca(id);
+
+		if (passwordRequest.getOldPassword().equals(usuario.getPassword()) && passwordRequest.getNewPassword().length() > 3) {
+			usuario.setPassword(passwordRequest.getNewPassword());
+			Usuario usuarioActualizado = usuarioService.modificar(id,	);
+			return ResponseEntity.ok(usuarioActualizado);
+		} 
+
+			return ResponseEntity.notFound().build();
+
+
 	}
 
 }

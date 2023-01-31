@@ -74,7 +74,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	public List<Usuario> listar() {
 		List<Usuario> usuarios = this.usuarioRepository.findAll()
                 .stream()
-                .filter(c -> c.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
+                // .filter(c -> c.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
                 .collect(Collectors.toList());
         if (usuarios.isEmpty()) {
             throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.LISTA_VACIA, HttpStatus.NOT_FOUND);
@@ -116,7 +116,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
 
 	        usuario.setId(oUsuario.get().getId());
+			usuario.setNombre(oUsuario.get().getNombre());
+			usuario.setEmail(oUsuario.get().getEmail());
+			usuario.setArea(oUsuario.get().getArea());
+			usuario.setRole(oUsuario.get().getRole());
+			usuario.setPassword(oUsuario.get().getPassword());
 	        usuario.setEstado(t.getEstado());
+			
 	        return this.usuarioRepository.save(usuario);
 	}
 

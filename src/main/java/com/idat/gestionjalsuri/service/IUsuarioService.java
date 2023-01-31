@@ -17,7 +17,7 @@ public interface IUsuarioService{
 	public Usuario modificar(Long id,UsuarioRequest t) ;
 
 	public Usuario estado(Long id,GenericoRequest t) ;
-
+	
 	
 	public boolean eliminar(Long id) ;
 
