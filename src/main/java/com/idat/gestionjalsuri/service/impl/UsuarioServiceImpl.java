@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.idat.gestionjalsuri.controller.beam.PasswordRequest;
 import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.Usuario;
 import com.idat.gestionjalsuri.model.request.GenericoRequest;
@@ -60,7 +61,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		Optional<Usuario> usuario = Optional.ofNullable(this.usuarioRepository.findById(id)
                 .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
         this.usuarioRepository.deleteById(id);
-        return true;
+        return true;	
 	}
 
 	@Override
@@ -122,7 +123,25 @@ public class UsuarioServiceImpl implements IUsuarioService {
 			usuario.setRole(oUsuario.get().getRole());
 			usuario.setPassword(oUsuario.get().getPassword());
 	        usuario.setEstado(t.getEstado());
-			
+
+	        return this.usuarioRepository.save(usuario);
+	}
+
+
+	@Override
+	public Usuario cambiaPassword(Long id, PasswordRequest t) {
+		Usuario usuario = new Usuario();
+	        Optional<Usuario> oUsuario = Optional.ofNullable(this.usuarioRepository.findById(id)
+	                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
+
+	        usuario.setId(oUsuario.get().getId());
+			usuario.setNombre(oUsuario.get().getNombre());
+			usuario.setEmail(oUsuario.get().getEmail());
+			usuario.setArea(oUsuario.get().getArea());
+			usuario.setRole(oUsuario.get().getRole());
+			usuario.setPassword(t.getNewPassword());
+	        usuario.setEstado(oUsuario.get().getEstado());
+
 	        return this.usuarioRepository.save(usuario);
 	}
 

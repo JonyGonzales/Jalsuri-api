@@ -1,6 +1,5 @@
 package com.idat.gestionjalsuri.controller;
 
-
 import java.net.URI;
 import java.util.List;
 
@@ -87,19 +86,16 @@ public class UsuarioController {
 		return ResponseEntity.ok(usuarioService.eliminar(id));
 	}
 	
-	// @PutMapping("/cambioPassword/{id}")
-	// public ResponseEntity<Usuario> cambiaPasswordXId(@PathVariable Long id,@RequestBody PasswordRequest passwordRequest) {
-	// 	Usuario usuario = usuarioService.busca(id);
+	@PutMapping("/cambioPassword/{id}")
+	public ResponseEntity<Usuario> cambiaPassword(@PathVariable Long id,@RequestBody PasswordRequest passwordRequest) {
+		Usuario usuario = usuarioService.busca(id);
 
-	// 	if (passwordRequest.getOldPassword().equals(usuario.getPassword()) && passwordRequest.getNewPassword().length() > 3) {
-	// 		usuario.setPassword(passwordRequest.getNewPassword());
-	// 		Usuario usuarioActualizado = usuarioService.modificar(id,PasswordRequest	);
-	// 		return ResponseEntity.ok(usuarioActualizado);
-	// 	} 
-
-	// 		return ResponseEntity.notFound().build();
-
-
-	// }
+		if (passwordRequest.getOldPassword().equals(usuario.getPassword()) && passwordRequest.getNewPassword().length() > 3) {
+			usuario.setPassword(passwordRequest.getNewPassword());
+			Usuario usuarioActualizado = usuarioService.cambiaPassword(id,passwordRequest);
+			return ResponseEntity.ok(usuarioActualizado);
+		} 
+			return ResponseEntity.notFound().build();
+	 }
 
 }
