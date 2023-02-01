@@ -87,19 +87,19 @@ public class UsuarioController {
 		return ResponseEntity.ok(usuarioService.eliminar(id));
 	}
 	
-	@PutMapping("/cambioPassword/{id}")
-	public ResponseEntity<Usuario> cambiaPasswordXId(@PathVariable Long id,@RequestBody PasswordRequest passwordRequest) {
-		Usuario usuario = usuarioService.busca(id);
+	// @PutMapping("/cambioPassword/{id}")
+	// public ResponseEntity<Usuario> cambiaPasswordXId(@PathVariable Long id,@RequestBody PasswordRequest passwordRequest) {
+	// 	Usuario usuario = usuarioService.busca(id);
 
-		if (passwordRequest.getOldPassword().equals(usuario.getPassword()) && passwordRequest.getNewPassword().length() > 3) {
-			usuario.setPassword(passwordRequest.getNewPassword());
-			Usuario usuarioActualizado = usuarioService.modificar(id,	);
-			return ResponseEntity.ok(usuarioActualizado);
-		} 
+	// 	if (passwordRequest.getOldPassword().equals(usuario.getPassword()) && passwordRequest.getNewPassword().length() > 3) {
+	// 		usuario.setPassword(passwordRequest.getNewPassword());
+	// 		Usuario usuarioActualizado = usuarioService.modificar(id,PasswordRequest	);
+	// 		return ResponseEntity.ok(usuarioActualizado);
+	// 	} 
 
-			return ResponseEntity.notFound().build();
+	// 		return ResponseEntity.notFound().build();
 
 
-	}
+	// }
 
 }
