@@ -26,7 +26,7 @@ import com.idat.gestionjalsuri.util.Constante;
 
 @RestController
 @RequestMapping(Constante.URLPREFIJO + Constante.URLSUBFIJOUSUARIOS)
-@CrossOrigin(origins = { Constante.CROSS_LOCAL,Constante.CROSS_WEB })
+@CrossOrigin(origins = { Constante.CROSS_LOCAL, Constante.CROSS_WEB })
 public class UsuarioController {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class UsuarioController {
 
 	@GetMapping
 	public ResponseEntity<List<Usuario>> listar() {
-	return ResponseEntity.ok(this.usuarioService.listar());
+		return ResponseEntity.ok(this.usuarioService.listar());
 
 	}
 
@@ -61,21 +61,20 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> actualizarUsuarioxId(@PathVariable Long id,
 			@RequestBody @Validated UsuarioRequest usuarioRequest) {
 
-		return ResponseEntity.ok(usuarioService.modificar(id,usuarioRequest));
+		return ResponseEntity.ok(usuarioService.modificar(id, usuarioRequest));
 
 	}
 
 	@PutMapping("/cambiaEstado/{id}")
-	public ResponseEntity<Usuario> cambiaEstadoXId(@PathVariable Long id, @RequestBody  GenericoRequest usuarioRequest) {
-
+	public ResponseEntity<Usuario> cambiaEstadoXId(@PathVariable Long id, @RequestBody GenericoRequest usuarioRequest) {
 		Usuario usuario = usuarioService.busca(id);
 		if (usuario == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		usuario.setEstado(usuarioRequest.getEstado());
 
-		Usuario usuariomod = usuarioService.estado(id,usuarioRequest);
-		
+		Usuario usuariomod = usuarioService.estado(id, usuarioRequest);
+
 		return ResponseEntity.ok(usuariomod);
 
 	}
@@ -85,17 +84,24 @@ public class UsuarioController {
 	public ResponseEntity<Boolean> eliminarUsuario(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(usuarioService.eliminar(id));
 	}
-	
+
 	@PutMapping("/cambiaPassword/{id}")
-	public ResponseEntity<Usuario> cambiaPassword(@PathVariable Long id,@RequestBody PasswordRequest passwordRequest) {
+	public ResponseEntity<Usuario> cambiaPassword(@PathVariable Long id, @RequestBody PasswordRequest passwordRequest) {
 		Usuario usuario = usuarioService.busca(id);
 
-		if (passwordRequest.getOldPassword().equals(usuario.getPassword()) && passwordRequest.getNewPassword().length() > 3) {
+		if (usuario == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+
+		// if (passwordRequest.getOldPassword().equals(usuario.getPassword()) &&
+		// passwordRequest.getNewPassword().length() > 3) {
+		if (passwordRequest.getOldPassword().equals(usuario.getPassword())) {
+			
 			usuario.setPassword(passwordRequest.getNewPassword());
-			Usuario usuarioActualizado = usuarioService.cambiaPassword(id,passwordRequest);
+			Usuario usuarioActualizado = usuarioService.cambiaPassword(id, passwordRequest);
 			return ResponseEntity.ok(usuarioActualizado);
-		} 
-			return ResponseEntity.notFound().build();
-	 }
+		}
+		return ResponseEntity.notFound().build();
+	}
 
 }
