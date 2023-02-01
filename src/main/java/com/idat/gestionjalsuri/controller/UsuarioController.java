@@ -86,7 +86,7 @@ public class UsuarioController {
 		return ResponseEntity.ok(usuarioService.eliminar(id));
 	}
 	
-	@PutMapping("/cambioPassword/{id}")
+	@PutMapping("/cambiaPassword/{id}")
 	public ResponseEntity<Usuario> cambiaPassword(@PathVariable Long id,@RequestBody PasswordRequest passwordRequest) {
 		Usuario usuario = usuarioService.busca(id);
 
