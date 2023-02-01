@@ -93,15 +93,13 @@ public class UsuarioController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 
-		// if (passwordRequest.getOldPassword().equals(usuario.getPassword()) &&
-		// passwordRequest.getNewPassword().length() > 3) {
-		if (passwordRequest.getOldPassword().equals(usuario.getPassword())) {
-			
-			usuario.setPassword(passwordRequest.getNewPassword());
+		// if (passwordRequest.getOldPassword().equals(usuario.getPassword()) && passwordRequest.getNewPassword().length() > 3) {
+		//if (passwordRequest.getOldPassword().equals(usuario.getPassword())) {
+
 			Usuario usuarioActualizado = usuarioService.cambiaPassword(id, passwordRequest);
 			return ResponseEntity.ok(usuarioActualizado);
-		}
-		return ResponseEntity.notFound().build();
+		//}
+		//return ResponseEntity.notFound().build();
 	}
 
 }
