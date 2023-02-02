@@ -139,7 +139,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 			usuario.setEmail(oUsuario.get().getEmail());
 			usuario.setArea(oUsuario.get().getArea());
 			usuario.setRole(oUsuario.get().getRole());
-			usuario.setPassword(t.getNewPassword());
+			usuario.setPassword("cambioback");
 	        usuario.setEstado(oUsuario.get().getEstado());
 
 	        return this.usuarioRepository.save(usuario);
