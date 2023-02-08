@@ -9,12 +9,13 @@ import com.idat.gestionjalsuri.controller.beam.PasswordRequest;
 import com.idat.gestionjalsuri.model.entity.Usuario;
 import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.UsuarioRequest;
+import com.idat.gestionjalsuri.model.request.UsuarioEditRequest;
 
 public interface IUsuarioService {
 
 	public Usuario registrar(UsuarioRequest t);
 
-	public Usuario modificar(Long id, UsuarioRequest t);
+	public Usuario modificar(Long id, UsuarioEditRequest t);
 
 	public boolean eliminar(Long id);
 

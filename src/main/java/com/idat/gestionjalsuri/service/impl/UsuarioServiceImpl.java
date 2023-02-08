@@ -16,6 +16,7 @@ import com.idat.gestionjalsuri.exception.ExceptionService;
 import com.idat.gestionjalsuri.model.entity.Usuario;
 import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.UsuarioRequest;
+import com.idat.gestionjalsuri.model.request.UsuarioEditRequest;
 import com.idat.gestionjalsuri.repository.UsuarioRepository;
 import com.idat.gestionjalsuri.service.IUsuarioService;
 import com.idat.gestionjalsuri.util.Constante;
@@ -38,7 +39,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
-	public Usuario modificar(Long id, UsuarioRequest t) {
+	public Usuario modificar(Long id, UsuarioEditRequest t) {
 		 Usuario usuario = new Usuario();
 	        Optional<Usuario> oUsuario = Optional.ofNullable(this.usuarioRepository.findById(id)
 	                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
