@@ -44,9 +44,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        Optional<Usuario> oUsuario = Optional.ofNullable(this.usuarioRepository.findById(id)
 	                .orElseThrow(() -> new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NO_ENCONTRADO, HttpStatus.NOT_FOUND)));
 
-	        if (this.existeNombreUsuario(t)) {
-	            throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NOMBRE_EXISTE, HttpStatus.BAD_REQUEST);
-	        }
+	        // if (this.existeNombreUsuario(oUsuario)) {
+	        //     throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.MENSAGE_NOMBRE_EXISTE, HttpStatus.BAD_REQUEST);
+	        // }
 	        usuario.setId(oUsuario.get().getId());
 	        usuario.setNombre(t.getNombre());
 	        usuario.setEmail(t.getEmail());

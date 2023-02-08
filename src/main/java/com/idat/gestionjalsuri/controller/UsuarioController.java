@@ -22,6 +22,7 @@ import com.idat.gestionjalsuri.model.entity.Usuario;
 import com.idat.gestionjalsuri.model.request.GenericoRequest;
 import com.idat.gestionjalsuri.model.request.LoginRequest;
 import com.idat.gestionjalsuri.model.request.UsuarioRequest;
+import com.idat.gestionjalsuri.model.request.UsuarioEditRequest;
 import com.idat.gestionjalsuri.service.IUsuarioService;
 import com.idat.gestionjalsuri.util.Constante;
 
@@ -60,7 +61,7 @@ public class UsuarioController {
 	// Metodo para Actualizar por ID
 	@PutMapping("/{id}")
 	public ResponseEntity<Usuario> actualizarUsuarioxId(@PathVariable Long id,
-			@RequestBody @Validated UsuarioRequest usuarioRequest) {
+			@RequestBody @Validated UsuarioEditRequest usuarioRequest) {
 
 		return ResponseEntity.ok(usuarioService.modificar(id, usuarioRequest));
 
