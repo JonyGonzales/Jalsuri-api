@@ -49,10 +49,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        usuario.setId(oUsuario.get().getId());
 	        usuario.setNombre(t.getNombre());
 	        usuario.setEmail(t.getEmail());
-	        usuario.setPassword(t.getPassword());
+	        usuario.setPassword(oUsuario.get().getPassword());
 	        usuario.setRole(t.getRole());
 	        usuario.setArea(t.getArea());
-	        usuario.setEstado(Constante.ESTADO_ACTIVO);
+	        usuario.setEstado(oUsuario.get().getEstado());
 	        return this.usuarioRepository.save(usuario);
 	}
 
