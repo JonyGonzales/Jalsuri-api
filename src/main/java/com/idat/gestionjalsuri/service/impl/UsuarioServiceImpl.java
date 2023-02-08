@@ -145,4 +145,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	        return this.usuarioRepository.save(usuario);
 	}
 
+	@Override
+	public Usuario loguear(String email, String password) {
+		Usuario usuario = usuarioRepository.findByEmail(email);
+		if (usuario != null && usuario.getPassword().equals(password)) {
+		      return usuario;
+		    }
+		    return null;
+	}
+
 }

@@ -20,6 +20,8 @@ public interface IUsuarioService {
 
 	public Usuario busca(Long id);
 
+	public Usuario loguear(String email, String password);
+
 	public List<Usuario> listar();
 
 	public Page<Usuario> listarPagina(Pageable page);

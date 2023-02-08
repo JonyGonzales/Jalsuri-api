@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.idat.gestionjalsuri.controller.beam.PasswordRequest;
 import com.idat.gestionjalsuri.model.entity.Usuario;
 import com.idat.gestionjalsuri.model.request.GenericoRequest;
+import com.idat.gestionjalsuri.model.request.LoginRequest;
 import com.idat.gestionjalsuri.model.request.UsuarioRequest;
 import com.idat.gestionjalsuri.service.IUsuarioService;
 import com.idat.gestionjalsuri.util.Constante;
@@ -100,6 +101,19 @@ public class UsuarioController {
 			return ResponseEntity.ok(usuarioActualizado);
 		}
 		return ResponseEntity.notFound().build();
+	}
+
+
+	@PostMapping("/login")
+	public ResponseEntity<Usuario> login(@RequestBody LoginRequest loginRequest) {
+	  Usuario usuario = usuarioService.loguear(loginRequest.getEmail(), loginRequest.getPassword());
+	  if (usuario != null) {
+		// Genera y retorna el token de autenticación
+		//return ResponseEntity.ok("Token de autenticación");
+		  return ResponseEntity.ok(usuario);
+	  }
+	  //return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+	  return ResponseEntity.notFound().build();
 	}
 
 }
