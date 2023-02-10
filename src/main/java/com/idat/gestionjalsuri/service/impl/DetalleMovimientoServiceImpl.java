@@ -118,7 +118,6 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
                 .stream()
                 .filter(m -> m.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
                 .filter(m -> m.getMovAlmacen().getId().equals(id))
-                .sorted(Comparator.comparing(DetalleMovimiento::getId).reversed())
                 .collect(Collectors.toList());
         if (movAlmacens.isEmpty()) {
             throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.LISTA_VACIA, HttpStatus.NOT_FOUND);

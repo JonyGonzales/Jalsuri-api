@@ -27,7 +27,7 @@ public class DetalleMovimientoController {
 		return ResponseEntity.ok(this.detalleMovimintoService.listar());
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/listarxId/{id}")
 	public ResponseEntity<List<DetalleMovimiento>> listarxId(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(this.detalleMovimintoService.listarxId(id));
 	}

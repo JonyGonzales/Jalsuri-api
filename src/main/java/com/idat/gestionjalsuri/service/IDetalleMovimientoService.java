@@ -13,22 +13,16 @@ public interface IDetalleMovimientoService {
 
 	public void registrar(DetalleMovimientoRequest t) ;
 
-	
 	public void modificar(Long id,DetalleMovimientoRequest t) ;
 
-	
 	public boolean eliminar(Long id) ;
 
-	
 	public DetalleMovimiento busca(Long id) ;
 
-	
 	public List<DetalleMovimiento> listar() ;
 
 	public List<DetalleMovimiento> listarxId(Long id) ;
 
-
-	
 	public Page<Categoria> listarPagina(Pageable page);
 
 }
