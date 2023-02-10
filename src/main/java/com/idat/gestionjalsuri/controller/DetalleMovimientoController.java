@@ -25,8 +25,13 @@ public class DetalleMovimientoController {
 	@GetMapping
 	public ResponseEntity<List<DetalleMovimiento>> listar() {
 		return ResponseEntity.ok(this.detalleMovimintoService.listar());
-
 	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<List<DetalleMovimiento>> listarxId(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(this.detalleMovimintoService.listarxId(id));
+	}
+
 
 	@PostMapping
 	public ResponseEntity<Void> agregar(@RequestBody @Validated DetalleMovimientoRequest request) {

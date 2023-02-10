@@ -25,6 +25,9 @@ public interface IDetalleMovimientoService {
 	
 	public List<DetalleMovimiento> listar() ;
 
+	public List<DetalleMovimiento> listarxId(Long id) ;
+
+
 	
 	public Page<Categoria> listarPagina(Pageable page);
 
