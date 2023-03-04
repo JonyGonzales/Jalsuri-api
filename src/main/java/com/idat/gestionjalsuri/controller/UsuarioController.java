@@ -27,8 +27,8 @@ import com.idat.gestionjalsuri.service.IUsuarioService;
 import com.idat.gestionjalsuri.util.Constante;
 
 @RestController
-@RequestMapping(Constante.URLPREFIJO + Constante.URLSUBFIJOUSUARIOS)
-// @CrossOrigin(origins = { Constante.CROSS_LOCAL, Constante.CROSS_WEB })
+@RequestMapping(Constante.URLPREFIJO + Constante.URLSUBFIJOUSUARIOS) 
+@CrossOrigin(origins = { Constante.CROSS_LOCAL, Constante.CROSS_WEB,Constante.CROSS_APP })
 public class UsuarioController {
 
 	@Autowired
