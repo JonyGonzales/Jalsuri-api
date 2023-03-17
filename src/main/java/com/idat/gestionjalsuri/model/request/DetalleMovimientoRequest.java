@@ -1,6 +1,5 @@
 package com.idat.gestionjalsuri.model.request;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
@@ -12,9 +11,9 @@ public class DetalleMovimientoRequest {
 
     private String observaciones;
 
-    @NotNull
+
     private Long idMovAlmacen;
-	@NotBlank
+	@NotNull
     private Long idProducto;
     @NotNull
     private Integer cantidad;
