@@ -11,13 +11,11 @@ import lombok.Setter;
 public class DetalleMovimientoRequest {
 
     private String observaciones;
+
     @NotNull
-	@NotBlank
     private Long idMovAlmacen;
-    @NotNull
 	@NotBlank
     private Long idProducto;
     @NotNull
-	@NotBlank
     private Integer cantidad;
 }
