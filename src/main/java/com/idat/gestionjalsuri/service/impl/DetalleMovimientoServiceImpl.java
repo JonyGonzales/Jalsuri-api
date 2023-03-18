@@ -125,4 +125,17 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
         }
         return movAlmacens;
     }
+
+    @Override
+    public List<DetalleMovimiento> listar_productos_de_Movimiento(Long id) {
+        List<DetalleMovimiento> movAlmacens = this.detalleMovimientoRepository.findAll()
+                .stream()
+                .filter(m -> m.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
+                .filter(m -> m.getMovAlmacen().getId().equals(id))
+                .collect(Collectors.toList());
+        if (movAlmacens.isEmpty()) {
+            throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.LISTA_VACIA, HttpStatus.NOT_FOUND);
+        }
+        return movAlmacens;
+    }
 }

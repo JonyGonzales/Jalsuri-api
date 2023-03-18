@@ -23,6 +23,8 @@ public interface IDetalleMovimientoService {
 
 	public List<DetalleMovimiento> listarxId(Long id) ;
 
+	public List<DetalleMovimiento> listar_productos_de_Movimiento(Long id);
+
 	public Page<Categoria> listarPagina(Pageable page);
 
 }

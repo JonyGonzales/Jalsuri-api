@@ -28,6 +28,11 @@ public class DetalleMovimientoController {
 	}
 
 	@GetMapping("/listarxId/{id}")
+	public ResponseEntity<List<DetalleMovimiento>> listar_productos_de_Movimiento(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(this.detalleMovimintoService.listarxId(id));
+	}
+	
+	@GetMapping("/listarxIds/{id}")
 	public ResponseEntity<List<DetalleMovimiento>> listarxId(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(this.detalleMovimintoService.listarxId(id));
 	}
@@ -48,7 +53,7 @@ public class DetalleMovimientoController {
 
 	// Metodo para Actualizar por ID
 	@PutMapping("/{id}")
-	public ResponseEntity<DetalleMovimiento> actualizarUsuarioxId(@PathVariable Long id,
+	public ResponseEntity<DetalleMovimiento> actualizarDetallexId(@PathVariable Long id,
 			@RequestBody @Validated DetalleMovimientoRequest request) {
 		detalleMovimintoService.modificar(id, request);
 		return ResponseEntity.ok().build();
@@ -56,7 +61,7 @@ public class DetalleMovimientoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Boolean> eliminarUsuario(@PathVariable("id") Long id) {
+	public ResponseEntity<Boolean> eliminarDetalle(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(detalleMovimintoService.eliminar(id));
 	}
 
