@@ -2,6 +2,7 @@ package com.idat.gestionjalsuri.controller;
 
 import com.idat.gestionjalsuri.model.entity.DetalleMovimiento;
 import com.idat.gestionjalsuri.model.request.DetalleMovimientoRequest;
+import com.idat.gestionjalsuri.model.response.VistaDetalleResponse;
 import com.idat.gestionjalsuri.service.IDetalleMovimientoService;
 import com.idat.gestionjalsuri.util.Constante;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +29,8 @@ public class DetalleMovimientoController {
 	}
 
 	@GetMapping("/listarxId/{id}")
-	public ResponseEntity<List<DetalleMovimiento>> listar_productos_de_Movimiento(@PathVariable("id") Long id) {
-		return ResponseEntity.ok(this.detalleMovimintoService.listarxId(id));
+	public ResponseEntity<List<VistaDetalleResponse>> listar_productos_de_Movimiento(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(this.detalleMovimintoService.listar_productos_de_Movimiento(id));
 	}
 	
 	@GetMapping("/listarxIds/{id}")

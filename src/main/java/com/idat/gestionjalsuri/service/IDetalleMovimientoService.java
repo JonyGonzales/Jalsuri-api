@@ -3,6 +3,8 @@ package com.idat.gestionjalsuri.service;
 import com.idat.gestionjalsuri.model.entity.Categoria;
 import com.idat.gestionjalsuri.model.entity.DetalleMovimiento;
 import com.idat.gestionjalsuri.model.request.DetalleMovimientoRequest;
+import com.idat.gestionjalsuri.model.response.VistaDetalleResponse;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,7 +25,7 @@ public interface IDetalleMovimientoService {
 
 	public List<DetalleMovimiento> listarxId(Long id) ;
 
-	public List<DetalleMovimiento> listar_productos_de_Movimiento(Long id);
+	public List<VistaDetalleResponse> listar_productos_de_Movimiento(Long id);
 
 	public Page<Categoria> listarPagina(Pageable page);
 

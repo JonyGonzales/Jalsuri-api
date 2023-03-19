@@ -1,6 +1,7 @@
 package com.idat.gestionjalsuri.repository;
 
 import com.idat.gestionjalsuri.model.entity.DetalleMovimiento;
+import com.idat.gestionjalsuri.model.response.VistaDetalleResponse;
 
 import java.util.List;
 
@@ -11,6 +12,6 @@ public interface DetalleMovimientoRepository extends JpaRepository<DetalleMovimi
 
 
     @Query(nativeQuery = true, value = "SELECT * FROM vista_detalle_movs")
-    List<DetalleMovimiento> listar_productos_de_Movimiento();
+    List<VistaDetalleResponse> listar_productos_de_Movimiento();
 
 }
