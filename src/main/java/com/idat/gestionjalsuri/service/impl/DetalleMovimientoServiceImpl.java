@@ -132,7 +132,7 @@ public class DetalleMovimientoServiceImpl implements IDetalleMovimientoService {
         List<VistaDetalleResponse> movAlmacens = this.detalleMovimientoRepository.listar_productos_de_Movimiento()
                 .stream()
                 .filter(m -> m.getEstado().equalsIgnoreCase(Constante.ESTADO_ACTIVO))
-                .filter(m -> m.getMovAlmacen().getId().equals(id))
+                .filter(m -> m.getId_mov_almacen().equals(id))
                 .collect(Collectors.toList());
         if (movAlmacens.isEmpty()) {
             throw new ExceptionService(Constante.CODIGO_ID_NO_ENCONTRADO, Constante.LISTA_VACIA, HttpStatus.NOT_FOUND);
